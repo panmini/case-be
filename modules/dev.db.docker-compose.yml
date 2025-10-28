@@ -1,0 +1,24 @@
+name: thy
+
+services:
+  db:
+    image: postgres:16
+    container_name: case_postgres_db
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: devdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_case_data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - case-network
+volumes:
+  postgres_case_data:
+
+networks:
+  case-network:
+    name: case-network
+    external: true

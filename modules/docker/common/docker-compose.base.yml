@@ -1,0 +1,16 @@
+name: 'thy'
+
+services:
+  app:
+    networks:
+      - case-network
+    restart: unless-stopped
+
+networks:
+  case-network:
+    driver: bridge
+    name: case-network
+
+volumes:
+  case-es-data:
+    driver: local

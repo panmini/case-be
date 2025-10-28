@@ -1,0 +1,13 @@
+services:
+  app:
+    image: 'thy:0.1.1'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_USERNAME=dev
+      - SPRING_DATASOURCE_PASSWORD=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://case_postgres_db:5432/devdb
+    ports:
+      - "8080:8080"
+      - "2919:2919"
+    volumes:
+      - ../../logs:/data/logs

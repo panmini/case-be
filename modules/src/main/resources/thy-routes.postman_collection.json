@@ -1,0 +1,376 @@
+{
+  "info": {
+    "name": "Case Routes API",
+    "description": "API for managing locations, transportations and finding routes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Get All Locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "locations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Location - Valid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Airport\",\n  \"country\": \"Test Country\",\n  \"city\": \"Test City\",\n  \"locationCode\": \"TST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "locations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Location - Invalid (Missing Fields)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"country\": \"\",\n  \"city\": \"\",\n  \"locationCode\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "locations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Location - Invalid (Duplicate Code)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Another Airport\",\n  \"country\": \"Test Country\",\n  \"city\": \"Test City\",\n  \"locationCode\": \"IST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "locations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transportations",
+      "item": [
+        {
+          "name": "Get All Transportations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/transportations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transportations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Transportation - Valid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": {\n    \"id\": \"ee146920-5033-4726-9bbb-bcd01e6991ef\"\n  },\n  \"destination\": {\n    \"id\": \"2d0d6b97-90ed-4217-a617-634eec2c4bda\"\n  },\n  \"transportationType\": \"FLIGHT\",\n  \"operatingDays\": [1, 2, 3, 4, 5, 6, 7]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/transportations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transportations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        {
+          "name": "Find Routes - Valid (TAK to LHR)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK&destination=LHR&date=2026-01-19",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                },
+                {
+                  "key": "destination",
+                  "value": "LHR"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-19"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Routes - Multiple Options (TAK to JFK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK&destination=JFK&date=2026-01-19",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                },
+                {
+                  "key": "destination",
+                  "value": "JFK"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-19"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Routes - Operating Days Filter (TAK to LHR Tuesday)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK&destination=LHR&date=2026-01-16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                },
+                {
+                  "key": "destination",
+                  "value": "LHR"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-16"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Routes - Invalid (Same Origin/Destination)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK&destination=TAK&date=2026-01-19",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                },
+                {
+                  "key": "destination",
+                  "value": "TAK"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-19"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Routes - Invalid (Missing Parameters)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Routes - No Routes Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/routes?origin=TAK&destination=SUL&date=2026-01-19",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "routes"
+              ],
+              "query": [
+                {
+                  "key": "origin",
+                  "value": "TAK"
+                },
+                {
+                  "key": "destination",
+                  "value": "SUL"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-19"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
